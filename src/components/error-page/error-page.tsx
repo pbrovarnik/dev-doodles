@@ -1,4 +1,4 @@
-import { useRouteError } from 'react-router-dom';
+import { Link, useRouteError } from 'react-router-dom';
 
 type RouterError = {
 	statusText: string;
@@ -15,6 +15,9 @@ export default function ErrorPage() {
 			<p>Sorry, an unexpected error has occurred.</p>
 			<p>
 				<i>{error.statusText || error.message}</i>
+			</p>
+			<p>
+				Take me <Link to="/">Home</Link>
 			</p>
 		</div>
 	);

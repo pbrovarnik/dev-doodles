@@ -6,7 +6,7 @@ import DebounceSearch from './debounce-search/debounce-search';
 import Dots from './dots/dots';
 import FolderStructure from './folder-structure/folder-structure';
 import GetCssSelector from './get-css-selector/get-css-selector';
-import Index from './index/index';
+import Home from './home/home';
 import NestedComments from './nested-comments/nested-comments';
 import NestedDropdowns from './nested-dropdowns/nested-dropdowns';
 import SodokuBoard from './sodoku-board/sodoku-board';
@@ -22,8 +22,8 @@ type Route = {
 const routes: Route[] = [
 	{
 		path: '/',
-		Element: Index,
-		name: 'Index',
+		Element: Home,
+		name: 'Home',
 	},
 	{
 		path: 'checkout-lines',
