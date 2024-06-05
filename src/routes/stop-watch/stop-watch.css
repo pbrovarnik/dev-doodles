@@ -1,0 +1,29 @@
+.stop-watch {
+	height: 100vh;
+	width: 168px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-rows: auto auto 200px;
+	align-content: center;
+	row-gap: 20px;
+}
+
+.timer-container {
+	width: 168px;
+	font-size: 40px;
+}
+
+.btn-container {
+	display: flex;
+	column-gap: 4px;
+	justify-content: space-between;
+}
+
+.laps {
+	overflow: scroll;
+}
+
+.lap {
+	display: flex;
+	justify-content: space-between;
+}

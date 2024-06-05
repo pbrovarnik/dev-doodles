@@ -1,0 +1,21 @@
+.post-block {
+	& > span {
+		font-style: italic;
+		cursor: pointer;
+	}
+}
+
+.comment-block {
+	& > span {
+		font-weight: bold;
+		cursor: pointer;
+	}
+
+	& > div {
+		margin-left: 25px;
+	}
+}
+
+.comments-list {
+	margin-left: 10px;
+}
