@@ -2,15 +2,53 @@
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 	line-height: 1.5;
 	font-weight: 400;
-
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+
+	color-scheme: dark light;
+
+	--base-bg-color: #cfcfcf;
+	--paper-bg-color: #fff;
+	--text: #212121;
+	--theme-toggle: #000;
+	--theme-toggle-text: #cfcfcf;
+	--theme-transition: background 500ms ease-out;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--base-bg-color: #212121;
+		--paper-bg-color: #2c2c2c;
+		--text: #cfcfcf;
+		--theme-toggle: #fff;
+		--theme-toggle-text: #212121;
+	}
+}
+
+:root:has(#themeToggle input:not(:checked)) {
+	color-scheme: light;
+	--base-bg-color: #cfcfcf;
+	--paper-bg-color: #fff;
+	--text: #212121;
+	--theme-toggle: #000;
+	--theme-toggle-text: #cfcfcf;
+}
+
+:root:has(#themeToggle input:checked) {
+	color-scheme: dark;
+	--base-bg-color: #212121;
+	--paper-bg-color: #2c2c2c;
+	--text: #cfcfcf;
+	--theme-toggle: #fff;
+	--theme-toggle-text: #212121;
 }
 
 body {
 	margin: 0;
 	padding: 0;
-	background-color: #f4f4f4;
+	background-color: var(--base-bg-color);
+	color: var(--text);
+	transition: var(--theme-transition);
 }

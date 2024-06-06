@@ -2,6 +2,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 import routes from '../routes';
 
 import './layout.css';
+import ThemeToggle from '../../components/theme-toggle/theme-toggle';
 
 function Layout() {
 	return (
@@ -15,6 +16,7 @@ function Layout() {
 						</NavLink>
 					))}
 				</nav>
+				<ThemeToggle />
 			</aside>
 			<main className="main-content paper-layout ">
 				<Outlet />

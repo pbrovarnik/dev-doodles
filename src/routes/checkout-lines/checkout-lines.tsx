@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import './checkout-lines.css';
 
 const getLineSum = (line: number[]) => line.reduce((sum, num) => (sum += num), 0);
 
@@ -64,18 +65,8 @@ export default function CheckoutLines() {
 	};
 
 	return (
-		<div
-			style={{
-				display: 'flex',
-				flexDirection: 'column',
-				alignItems: 'center',
-				rowGap: '20px',
-			}}>
-			<div
-				style={{
-					display: 'flex',
-					columnGap: '4px',
-				}}>
+		<div className="checkout-lines">
+			<div className="checkout-lines-btns">
 				<button disabled={isOpenLine || areLineEmpty} onClick={handleOpenLines}>
 					Open Lines
 				</button>
