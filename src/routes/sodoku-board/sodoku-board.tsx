@@ -90,7 +90,7 @@ export default function SodokuBoard() {
 					</div>
 				))}
 			</div>
-			<div className="btn-container">
+			<div className="sodoku-btn-container">
 				<button className="solve-btn" onClick={handleSolveBtn}>
 					Solve
 				</button>

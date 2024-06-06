@@ -6,7 +6,7 @@ import './layout.css';
 function Layout() {
 	return (
 		<div className="layout">
-			<header className="side-bar">
+			<aside className="sidebar paper-layout ">
 				<h2 className="title">Dev Doodles</h2>
 				<nav className="navigation-links">
 					{routes.map(({ name, path }) => (
@@ -15,8 +15,8 @@ function Layout() {
 						</NavLink>
 					))}
 				</nav>
-			</header>
-			<main className="main-content">
+			</aside>
+			<main className="main-content paper-layout ">
 				<Outlet />
 			</main>
 		</div>

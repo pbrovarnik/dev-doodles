@@ -1,14 +1,15 @@
 .layout {
 	display: grid;
 	grid-template-columns: max-content 1fr;
-	column-gap: 40px;
 
-	.side-bar {
+	.sidebar {
 		position: sticky;
 		top: 0;
 		align-self: start;
 
 		.title {
+			font-size: 24px;
+			font-weight: bold;
 		}
 
 		.navigation-links {
@@ -19,4 +20,14 @@
 
 	.main-content {
 	}
+}
+
+.paper-layout {
+	height: calc(100vh - 80px);
+	background-color: #fff;
+	padding: 20px;
+	margin: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	overflow: scroll;
 }

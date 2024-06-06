@@ -52,7 +52,7 @@ export default function StopWatch() {
 	return (
 		<div className="stop-watch">
 			<div className="timer-container">{formatTime(timer)}</div>
-			<div className="btn-container">
+			<div className="stop-watch-btn-container">
 				<button onClick={handleLapReset} disabled={!isRunning && timer === 0}>
 					{isRunning || timer === 0 ? 'Lap' : 'Reset'}
 				</button>

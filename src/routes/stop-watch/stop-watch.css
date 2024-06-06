@@ -1,5 +1,5 @@
 .stop-watch {
-	height: 100vh;
+	height: 100%;
 	width: 168px;
 	margin: 0 auto;
 	display: grid;
@@ -13,7 +13,7 @@
 	font-size: 40px;
 }
 
-.btn-container {
+.stop-watch-btn-container {
 	display: flex;
 	column-gap: 4px;
 	justify-content: space-between;

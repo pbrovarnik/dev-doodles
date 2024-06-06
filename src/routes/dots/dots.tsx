@@ -42,7 +42,7 @@ export default function Dots() {
 
 	return (
 		<div className="dots">
-			<div className="btn-container">
+			<div className="dot-btn-container">
 				<button disabled={!points.length} onClick={handleUndo}>
 					Undo
 				</button>

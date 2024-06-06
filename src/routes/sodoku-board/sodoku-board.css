@@ -57,7 +57,7 @@
 	}
 }
 
-.btn-container {
+.sodoku-btn-container {
 	display: flex;
 	column-gap: 4px;
 	margin-top: 20px;
