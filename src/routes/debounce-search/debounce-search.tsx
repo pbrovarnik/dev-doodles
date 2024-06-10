@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import useDebounce from '../../hooks/useDebounce';
+import useDebounceCallback from '../../hooks/useDebounceCallback';
 
 const DATA: string[] = [
 	'blitz',
@@ -36,13 +36,17 @@ export default function DebounceSearch() {
 
 function Child({ data }: { data: string[] }) {
 	const [query, setQuery] = useState('');
-	const debounce = useDebounce(query);
+	const filtered = data.filter((word) => word.includes(query));
 
-	const filtered = data.filter((word) => word.includes(debounce));
+	const onSearch = useDebounceCallback((value) => setQuery(value), 500);
 
 	return (
 		<div>
-			<input onChange={(e) => setQuery(e.target.value)} />
+			<input
+				onChange={(e) => {
+					onSearch(e.target.value);
+				}}
+			/>
 			{filtered.map((word, idx) => (
 				<p key={idx}>{word}</p>
 			))}
