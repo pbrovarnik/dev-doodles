@@ -37,7 +37,8 @@
 	}
 
 	input {
-		background-color: var(--theme-transition);
+		/* transition: var(--theme-transition); */
+		background-color: inherit;
 		transition: var();
 		padding: 10px 16.25px;
 		width: 10px;

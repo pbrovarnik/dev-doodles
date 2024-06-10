@@ -14,7 +14,7 @@
 			display: inline-block;
 			border-radius: 50%;
 			background-color: var(--text);
-			transition: var(--theme-transition);
+			/* transition: var(--theme-transition); */
 			height: 10px;
 			width: 10px;
 		}

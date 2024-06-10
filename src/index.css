@@ -50,5 +50,5 @@ body {
 	padding: 0;
 	background-color: var(--base-bg-color);
 	color: var(--text);
-	transition: var(--theme-transition);
+	/* transition: var(--theme-transition); */
 }
