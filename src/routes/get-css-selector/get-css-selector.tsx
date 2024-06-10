@@ -1,23 +1,8 @@
-import { useEffect } from 'react';
+import { MouseEventHandler } from 'react';
+import './get-css-selector.css';
 
 export default function GetCssSelector() {
-	useEffect(() => {
-		const handleDocumentClick: EventListener = (element) => {
-			const cssSelector = getCssSelector(element);
-
-			alert(`Selector: ${cssSelector}`);
-		};
-
-		document.addEventListener('click', handleDocumentClick);
-
-		return () => {
-			document.removeEventListener('click', handleDocumentClick);
-		};
-	}, []);
-
-	const getCssSelector = (event: Event) => {
-		let element = event.target as HTMLElement | null;
-
+	const getCssSelector = (element: HTMLElement | null) => {
 		if (!element) return;
 
 		if (element.id) return `#${element.id}`;
@@ -51,8 +36,14 @@ export default function GetCssSelector() {
 		return path.join(' > ');
 	};
 
+	const handleAppClick: MouseEventHandler<HTMLElement> = (element) => {
+		const cssSelector = getCssSelector(element.target as HTMLElement);
+
+		alert(`Selector: ${cssSelector}`);
+	};
+
 	return (
-		<div className="app" id="app">
+		<div className="app" id="app" onClick={handleAppClick}>
 			<h1 id="first-child">hello</h1>
 			<div className="child">child 2</div>
 			<div id="child">
