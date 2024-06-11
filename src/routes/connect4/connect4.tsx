@@ -1,4 +1,4 @@
-import { MouseEventHandler, useCallback, useRef, useState } from 'react';
+import { MouseEventHandler, useCallback, useMemo, useRef, useState } from 'react';
 import { checkWinner } from './utils/game-logic';
 
 import './connect4.css';
@@ -34,69 +34,65 @@ const defaultCell: Board = {
 	player: null,
 };
 
-const defaultBoard = (): Board[][] => structuredClone(new Array(6).fill(null).map(() => new Array(7).fill(null).map(() => ({ ...defaultCell }))));
+const defaultBoard = (): Board[][] => new Array(6).fill(null).map(() => new Array(7).fill(null).map(() => ({ ...defaultCell })));
 
 export default function Connect4() {
 	const [board, setBoard] = useState<Board[][]>(defaultBoard());
+	const [isRedTurn, setIsRedTurn] = useState<boolean>(true);
+	const [isGameOver, setIsGameOver] = useState<boolean>(false);
+	const [winningPlayer, setWinningPlayer] = useState<Player>(null);
 
-	const isRedTurn = useRef<boolean>(true);
-	const isGameOver = useRef<boolean>(false);
-	const winningPlayer = useRef<Player>(null);
 	const numberOfTurns = useRef<number>(0);
 
 	const baseGameOverText = `player wins in ${Math.ceil(numberOfTurns.current / 2)} turns!!`;
-	const gameOverText = winningPlayer.current === RED ? `${RED} ${baseGameOverText}` : winningPlayer.current === YELLOW ? `${YELLOW} ${baseGameOverText}` : 'Tie game!!';
-
-	const insertNextEmptyCell = useCallback(
-		(colIdx: number) => {
-			for (let i = board.length - 1; i >= 0; i--) {
-				const cell = board[i][colIdx].player;
-
-				if (!cell) {
-					board[i][colIdx].player = isRedTurn.current ? RED : YELLOW;
-					setBoard([...board]);
-
-					return;
-				}
-			}
-		},
-		[board]
+	const gameOverText = useMemo(
+		() => (winningPlayer === RED ? `${RED} ${baseGameOverText}` : winningPlayer === YELLOW ? `${YELLOW} ${baseGameOverText}` : 'Tie game!!'),
+		[winningPlayer, baseGameOverText]
 	);
 
 	const handleColumnClick: MouseEventHandler<HTMLButtonElement> = useCallback(
 		(e) => {
-			insertNextEmptyCell(Number(e.currentTarget.id));
+			const colIdx = Number(e.currentTarget.id);
+			for (let i = board.length - 1; i >= 0; i--) {
+				const cell = board[i][colIdx].player;
+
+				if (!cell) {
+					board[i][colIdx].player = isRedTurn ? RED : YELLOW;
+					setBoard([...board]);
+
+					break;
+				}
+			}
 
 			let winner = null;
 			if (++numberOfTurns.current > 6) winner = checkWinner(board);
 
 			const isTieGame = board[0].every((value) => value.player !== null);
 
-			if (winner || isTieGame) isGameOver.current = true;
-
 			if (winner) {
 				winner.winningCells.forEach(([row, col]) => (board[row][col].isWinningCell = true));
 				setBoard([...board]);
-
-				winningPlayer.current = winner.gameWinner;
+				setWinningPlayer(winner.gameWinner);
+				setIsGameOver(() => true);
 			} else if (isTieGame) {
-				winningPlayer.current = TIE;
+				setWinningPlayer(TIE);
+				setIsGameOver(() => true);
 			} else {
-				isRedTurn.current = !isRedTurn.current;
+				setIsRedTurn((prev) => !prev);
 			}
 		},
-		[board, insertNextEmptyCell]
+		[board, isRedTurn]
 	);
 
 	const handleReset = useCallback(() => {
 		setBoard(defaultBoard());
-		isGameOver.current = false;
-		isRedTurn.current = true;
-		winningPlayer.current = null;
+		setIsRedTurn(() => true);
+		setIsGameOver(() => false);
+		setWinningPlayer(() => null);
 		numberOfTurns.current = 0;
 	}, []);
 
-	const insertBtnColor = useCallback((colIdx: number) => (isGameOver.current || board[0][colIdx].player ? 'unset' : isRedTurn.current ? RED_COLOR : YELLOW_COLOR), [board]);
+	const insertBtnColor = useCallback((colIdx: number) => (isGameOver || board[0][colIdx].player ? 'unset' : isRedTurn ? RED_COLOR : YELLOW_COLOR), [board, isGameOver, isRedTurn]);
 
 	return (
 		<div className="connect-4">
@@ -109,7 +105,7 @@ export default function Connect4() {
 						style={{
 							backgroundColor: insertBtnColor(insertCellIdx),
 						}}
-						disabled={isGameOver.current || !!board[0][insertCellIdx].player}
+						disabled={isGameOver || !!board[0][insertCellIdx].player}
 						onClick={handleColumnClick}
 						className="insert-cell">
 						<svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -136,11 +132,11 @@ export default function Connect4() {
 			{/* consolidted game functions */}
 			{/* see if you can mess with the length - 1 */}
 			{/* no work till after 3 moves */}
-			{isGameOver.current && (
+			{isGameOver && (
 				<>
 					<h2
 						style={{
-							color: winningPlayer.current === RED ? RED_COLOR : winningPlayer.current === YELLOW ? YELLOW_COLOR : TIE_COLOR,
+							color: winningPlayer === RED ? RED_COLOR : winningPlayer === YELLOW ? YELLOW_COLOR : TIE_COLOR,
 						}}
 						className="c4-game-msg">
 						{gameOverText}
