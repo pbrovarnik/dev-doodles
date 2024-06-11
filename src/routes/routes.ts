@@ -1,6 +1,6 @@
 import CheckoutLines from './checkout-lines/checkout-lines';
 import CommentsTree from './comments-tree/comments-tree';
-// import Connect4 from './connect4/connect4';
+import Connect4 from './connect4/connect4';
 import CurrencyConverter from './currency-converter/currency-converter';
 import DebounceSearch from './debounce-search/debounce-search';
 import Dots from './dots/dots';
@@ -35,11 +35,11 @@ const routes: Route[] = [
 		Element: CommentsTree,
 		name: 'Comments Tree',
 	},
-	// {
-	// 	path: 'connect4',
-	// 	Element: Connect4,
-	// 	name: 'Connect4',
-	// },
+	{
+		path: 'connect4',
+		Element: Connect4,
+		name: 'Connect4',
+	},
 	{
 		path: 'currency-converter',
 		Element: CurrencyConverter,
