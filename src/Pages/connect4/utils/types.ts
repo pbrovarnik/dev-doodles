@@ -8,6 +8,6 @@ export type Board = {
 };
 
 export type Winner = {
+	board: Board[][];
 	gameWinner: Player;
-	winningCells: number[][];
 };

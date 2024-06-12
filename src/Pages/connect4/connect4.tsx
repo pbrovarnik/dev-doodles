@@ -3,8 +3,8 @@ import InsertRows from './components/insert-rows';
 import Board from './components/board';
 import GameOver from './components/game-over';
 
-import { checkWinner } from './utils/game-logic';
-import { RED, RED_COLOR, TIE, YELLOW, YELLOW_COLOR } from './utils/constants';
+import { checkWinner, turn } from './utils/game-logic';
+import { RED_COLOR, TIE, YELLOW_COLOR } from './utils/constants';
 import { Board as BoardType, Player } from './utils/types';
 
 import './connect4.css';
@@ -24,34 +24,16 @@ export default function Connect4() {
 
 	const numberOfTurns = useRef<number>(0);
 
-	const turn = useCallback(
-		(colIdx: number) => {
-			for (let i = board.length - 1; i >= 0; i--) {
-				const cell = board[i][colIdx].player;
-
-				if (!cell) {
-					board[i][colIdx].player = isRedTurn ? RED : YELLOW;
-					setBoard([...board]);
-
-					break;
-				}
-			}
-		},
-		[board, isRedTurn]
-	);
-
 	const handleColumnClick: MouseEventHandler<HTMLButtonElement> = useCallback(
 		(e) => {
-			turn(Number(e.currentTarget.id));
+			const updatedBoard = turn(board, Number(e.currentTarget.id), isRedTurn);
+			setBoard([...updatedBoard]);
 
-			let winner = null;
-			if (++numberOfTurns.current > 6) winner = checkWinner(board);
-
+			const winner = ++numberOfTurns.current > 6 ? checkWinner(board) : null;
 			const isTieGame = board[0].every((value) => value.player !== null);
 
 			if (winner) {
-				winner.winningCells.forEach(([row, col]) => (board[row][col].isWinningCell = true));
-				setBoard([...board]);
+				setBoard([...winner.board]);
 				setWinningPlayer(winner.gameWinner);
 				setIsGameOver(() => true);
 			} else if (isTieGame) {
@@ -61,7 +43,7 @@ export default function Connect4() {
 				setIsRedTurn((prev) => !prev);
 			}
 		},
-		[board, turn]
+		[board, isRedTurn]
 	);
 
 	const handleReset = useCallback(() => {

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
-import routes from './routes/routes';
+import Layout from './Pages/layout/layout';
+import routes from './Pages/routes';
 import ErrorPage from './components/error-page/error-page';
-import Layout from './routes/layout/layout';
 
 import './index.css';
 
