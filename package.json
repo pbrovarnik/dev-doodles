@@ -2,7 +2,7 @@
 	"name": "dev-doodles",
 	"private": true,
 	"version": "0.0.0",
-	"homepage": "https://pbrovarnik.github.io/dev-doodles/",
+	"homepage": "https://pbrovarnik.github.io/dev-doodles",
 	"type": "module",
 	"scripts": {
 		"dev": "vite",

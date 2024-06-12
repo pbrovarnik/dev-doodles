@@ -14,7 +14,10 @@ const router = createBrowserRouter(
 				{routes.map(({ name, path, Element }) => (name === 'index' ? <Route key={path} index element={<Element />} /> : <Route key={path} path={path} element={<Element />} />))}
 			</Route>
 		</Route>
-	)
+	),
+	{
+		basename: '/dev-doodles',
+	}
 );
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
