@@ -7,14 +7,7 @@ export type Board = {
 	player: Player;
 };
 
-type WinningCells = number[][];
-
 export type Winner = {
 	gameWinner: Player;
-	winningCells: WinningCells;
-};
-
-export type Check = {
-	count: number;
-	winningCells: WinningCells;
+	winningCells: number[][];
 };

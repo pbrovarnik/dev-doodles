@@ -10,6 +10,7 @@ type Props = {
 export default function GameOver({ numberOfTurns, winningPlayer, onResetClick }: Props) {
 	const gameOverText = useMemo(() => {
 		const baseGameOverText = `player wins in ${Math.ceil(numberOfTurns / 2)} turns!!`;
+
 		return winningPlayer === RED ? `${RED} ${baseGameOverText}` : winningPlayer === YELLOW ? `${YELLOW} ${baseGameOverText}` : 'Tie game!!';
 	}, [numberOfTurns, winningPlayer]);
 
