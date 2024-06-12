@@ -1,8 +1,8 @@
-# Dev Doodles
+# DevDoodles
 
 ![Under Construction](https://img.shields.io/badge/status-under%20construction-orange?style=for-the-badge)
 
-Welcome to **Dev Doodles**! 🎨✨
+Welcome to **DevDoodles**! 🎨✨
 
 ## 🚧 Under Construction 🚧
 

@@ -8,7 +8,7 @@ function Layout() {
 	return (
 		<div className="layout">
 			<aside className="sidebar paper-layout ">
-				<h2 className="title">Dev Doodles</h2>
+				<h2 className="title">DevDoodles</h2>
 				<nav className="navigation-links">
 					{routes.map(({ name, path }) => (
 						<NavLink key={path} to={path}>
