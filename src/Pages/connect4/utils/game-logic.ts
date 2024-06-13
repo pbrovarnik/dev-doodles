@@ -21,8 +21,7 @@ export const checkWinner = (board: Board[][]): Winner | null => {
 				winningCells = [];
 				count = 0;
 			}
-			console.log('count', count);
-			console.log('winningCells', winningCells);
+
 			if (count === 3) {
 				winningCells.push([nextRow, nextCol]);
 				winningCells.forEach(([row, col]) => (board[row][col].isWinningCell = true));

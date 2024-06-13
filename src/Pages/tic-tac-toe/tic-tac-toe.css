@@ -1,0 +1,44 @@
+.ttt {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	.ttt-board {
+		width: fit-content;
+		display: flex;
+		flex-direction: column;
+
+		.ttt-row {
+			display: grid;
+			grid-template-columns: repeat(3, 150px);
+
+			&:not(&:nth-last-of-type(3)) {
+				border-top: 1px solid #000;
+			}
+
+			.ttt-cell {
+				width: 150px;
+				height: 150px;
+				line-height: 1;
+				background-color: var(--paper-bg-color);
+				font-size: 150px;
+				text-align: center;
+				font-weight: 100;
+
+				&:not(&:nth-last-of-type(3)) {
+					border-left: 1px solid #000;
+				}
+
+				& div {
+					width: 100%;
+					height: 100%;
+				}
+			}
+
+			.pulse {
+				animation: pulse 0.8s infinite ease-in-out alternate;
+			}
+		}
+	}
+}

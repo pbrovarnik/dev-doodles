@@ -43,7 +43,6 @@ function App() {
 			.then((resp) => resp.json())
 			.then((data) => {
 				setLoading(false);
-				console.log('data', data);
 				const covertedRate = new Intl.NumberFormat('en-US', { style: 'currency', currency: to }).format(data.rates[to] ?? 0);
 				setRate(covertedRate);
 			});

@@ -11,6 +11,7 @@ import NestedComments from './nested-comments/nested-comments';
 import NestedDropdowns from './nested-dropdowns/nested-dropdowns';
 import SodokuBoard from './sodoku-board/sodoku-board';
 import StopWatch from './stop-watch/stop-watch';
+import TicTacToe from './tic-tac-toe/tic-tac-toe';
 import TrieAutocomplete from './trie-autocomplete/routes/autocomplete-client';
 
 type Route = {
@@ -84,6 +85,11 @@ const routes: Route[] = [
 		path: 'stop-watch',
 		Element: StopWatch,
 		name: 'Stop Watch',
+	},
+	{
+		path: 'tic-tac-toe',
+		Element: TicTacToe,
+		name: 'Tic Tac Toe',
 	},
 	{
 		path: 'trie-autocomplete',
