@@ -4,12 +4,13 @@ import ArrowDownIcon from './arrow-down-icon';
 
 type Props = {
 	board: Board[][];
+	isDisabled: boolean;
 	insertBtnColor: (colIdx: number) => string;
 	isGameOver: boolean;
 	onColumnClick: MouseEventHandler<HTMLButtonElement>;
 };
 
-export default function InsertRows({ board, insertBtnColor, isGameOver, onColumnClick }: Props) {
+export default function InsertRows({ board, insertBtnColor, isDisabled, isGameOver, onColumnClick }: Props) {
 	const boardRow = board[0];
 
 	return (
@@ -21,7 +22,7 @@ export default function InsertRows({ board, insertBtnColor, isGameOver, onColumn
 					style={{
 						backgroundColor: insertBtnColor(insertCellIdx),
 					}}
-					disabled={isGameOver || !!boardRow[insertCellIdx].player}
+					disabled={isGameOver || !!boardRow[insertCellIdx].player || isDisabled}
 					onClick={onColumnClick}
 					className="insert-cell">
 					<ArrowDownIcon />

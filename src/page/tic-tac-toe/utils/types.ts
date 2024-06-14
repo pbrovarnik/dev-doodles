@@ -6,3 +6,5 @@ export type Winner = {
 	player: Player;
 	winningCells: number[][];
 };
+export type Coord = [number, number];
+export type DropCoinReturn = { board: BoardType[][]; coords: Coord; isFull: boolean };

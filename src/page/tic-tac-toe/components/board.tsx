@@ -4,7 +4,7 @@ import { BoardType } from '../utils/types';
 type Props = {
 	board: BoardType[][];
 	boardRef: LegacyRef<HTMLDivElement>;
-	onCellClick: MouseEventHandler<HTMLDivElement>;
+	onCellClick: MouseEventHandler<HTMLButtonElement>;
 };
 
 export default function Board({ board, boardRef, onCellClick }: Props) {
@@ -14,7 +14,7 @@ export default function Board({ board, boardRef, onCellClick }: Props) {
 				<div key={rowIdx} id={String(rowIdx)} className="ttt-row">
 					{row.map((cell, colIdx) => (
 						<div key={colIdx} id={String(colIdx)} className="ttt-cell">
-							<div onClick={onCellClick}>{cell}</div>
+							<button onClick={onCellClick}>{cell}</button>
 						</div>
 					))}
 				</div>

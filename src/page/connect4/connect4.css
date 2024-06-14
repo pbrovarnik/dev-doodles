@@ -3,6 +3,33 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+
+	.c4-header {
+		width: 100%;
+		height: 96px;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		align-items: baseline;
+		margin-bottom: 20px;
+
+		.c4-switches {
+			display: flex;
+			flex-direction: column;
+			row-gap: 8px;
+
+			.c4-switch {
+				display: grid;
+				grid-template-columns: 110px max-content;
+				grid-template-rows: max-content max-content;
+				column-gap: 8px;
+			}
+		}
+
+		h1 {
+			justify-self: center;
+		}
+	}
+
 	.insert-row {
 		width: fit-content;
 		height: 50px;

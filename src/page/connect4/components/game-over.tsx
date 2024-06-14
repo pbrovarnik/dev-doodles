@@ -4,7 +4,7 @@ import { Player } from '../utils/types';
 
 type Props = {
 	numberOfTurns: number;
-	winningPlayer: Player;
+	winningPlayer: Player | null;
 	onResetClick: () => void;
 };
 export default function GameOver({ numberOfTurns, winningPlayer, onResetClick }: Props) {

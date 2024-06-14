@@ -4,7 +4,7 @@ import { BoardType, Player } from './utils/types';
 import GameOver from './components/game-over';
 import { PLAYER_O, PLAYER_X, TIE } from './utils/constants';
 import { checkWinner } from './utils/game-logic';
-import Header from './components/header/header';
+import Header from './components/header';
 import { bestMove } from './utils/mini-max';
 
 import './tic-tac-toe.css';
@@ -23,6 +23,7 @@ export default function TicTacToe() {
 
 	const turn = useCallback(
 		(rowId: number, colId: number) => {
+			(boardRef.current?.children[rowId]?.children[colId]?.children[0] as HTMLButtonElement).disabled = true;
 			board[rowId][colId] = isXTurn ? PLAYER_X : PLAYER_O;
 			setBoard([...board]);
 			setIsXTurn((prev) => !prev);
@@ -37,10 +38,12 @@ export default function TicTacToe() {
 			setWinningPlayer(TIE);
 			setIsGameOver(() => true);
 		} else if (winner) {
-			winner.winningCells.forEach(([row, col]) => {
-				boardRef.current?.children[row]?.children[col]?.children[0]?.classList.add('pulse');
+			winner.winningCells.forEach(([rowId, colId]) => {
+				const cell = boardRef.current?.children[rowId]?.children[colId]?.children[0] as HTMLButtonElement;
+				cell?.classList.add('pulse');
 			});
 
+			setDisabledOnBoard(true);
 			setIsGameOver(() => true);
 			setWinningPlayer(winner.player);
 		}
@@ -57,8 +60,9 @@ export default function TicTacToe() {
 		}
 	}, [board, checkWin, isAiPlaying, isXTurn, turn]);
 
-	const handleCellClick: MouseEventHandler<HTMLDivElement> = useCallback(
+	const handleCellClick: MouseEventHandler<HTMLButtonElement> = useCallback(
 		({ currentTarget }) => {
+			currentTarget.disabled = true;
 			const parentElm = currentTarget.parentElement;
 			const rowId = Number(parentElm?.parentElement?.id);
 			const colId = Number(parentElm?.id);
@@ -69,13 +73,28 @@ export default function TicTacToe() {
 		[checkWin, turn]
 	);
 
-	const clearPulse = () => {
+	const clearDisabledAndPulse = () => {
 		// clear pulse className
 		if (boardRef.current?.children?.length) {
-			for (let i = 0; i < boardRef.current?.children?.length; i++) {
-				const rows = boardRef.current?.children[i].children;
-				for (let j = 0; j < rows.length; j++) {
-					boardRef.current?.children[i]?.children[j]?.children[0]?.classList.remove('pulse');
+			for (let rowId = 0; rowId < boardRef.current?.children?.length; rowId++) {
+				const rows = boardRef.current?.children[rowId]?.children;
+				for (let colId = 0; colId < rows.length; colId++) {
+					const cell = rows[colId]?.children[0] as HTMLButtonElement;
+					cell?.classList.remove('pulse');
+					cell.disabled = false;
+				}
+			}
+		}
+	};
+
+	const setDisabledOnBoard = (isDisabled: boolean) => {
+		// clear pulse className
+		if (boardRef.current?.children?.length) {
+			for (let rowId = 0; rowId < boardRef.current?.children?.length; rowId++) {
+				const rows = boardRef.current?.children[rowId]?.children;
+				for (let colId = 0; colId < rows.length; colId++) {
+					const cell = rows[colId]?.children[0] as HTMLButtonElement;
+					cell.disabled = isDisabled;
 				}
 			}
 		}
@@ -86,7 +105,7 @@ export default function TicTacToe() {
 		setIsGameOver(() => false);
 		setWinningPlayer(() => null);
 		setIsXTurn(() => !isAiFirstRef.current);
-		clearPulse();
+		clearDisabledAndPulse();
 	};
 
 	const handleAiSwitchChange: ChangeEventHandler<HTMLInputElement> = ({ currentTarget }) => {

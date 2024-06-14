@@ -3,10 +3,10 @@ import { BoardType, Player, Winner } from './types';
 import { winningSequences } from './winning-sequences';
 
 export const checkWinner = (board: BoardType[][]): Winner | null => {
-	let winningCells: number[][] = [];
-	let count = 0;
-
 	for (const sequence of winningSequences) {
+		let winningCells: number[][] = [];
+		let count = 0;
+
 		for (let i = 0; i < sequence.length - 1; i++) {
 			const [row, col] = sequence[i];
 			const [nextRow, nextCol] = sequence[i + 1];
@@ -28,12 +28,9 @@ export const checkWinner = (board: BoardType[][]): Winner | null => {
 				return { player: currentCell as Player, winningCells };
 			}
 		}
-
-		winningCells = [];
-		count = 0;
 	}
 
 	const isTieGame = board.every((row) => row.every((cell) => cell !== null));
 
-	return isTieGame ? { player: TIE, winningCells } : null;
+	return isTieGame ? { player: TIE, winningCells: [] } : null;
 };
