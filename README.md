@@ -4,6 +4,8 @@
 
 Welcome to **DevDoodles**! 🎨✨
 
+To explore the app, [**CLICK ME!**](https://pbrovarnik.github.io/dev-doodles)
+
 ## 🚧 Under Construction 🚧
 
 This repository is currently under construction. I'm working hard to create something amazing and education! Stay tuned for updates.
