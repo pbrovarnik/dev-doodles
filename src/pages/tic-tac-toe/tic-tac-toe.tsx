@@ -3,9 +3,8 @@ import Board from './components/board';
 import { BoardType, Player } from './utils/types';
 import GameOver from './components/game-over';
 import { PLAYER_O, PLAYER_X, TIE } from './utils/constants';
-import { checkWinner } from './utils/game-logic';
+import { bestMove, checkWinner } from './utils/game-logic';
 import Header from './components/header';
-import { bestMove } from './utils/mini-max';
 
 import './tic-tac-toe.css';
 

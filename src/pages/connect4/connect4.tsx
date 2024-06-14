@@ -51,7 +51,7 @@ export default function Connect4() {
 		if (isAiPlaying && !isRedTurn && !isGameOver) {
 			setTimeout(() => {
 				const coords = bestMove(structuredClone(board));
-				if (coords) turn(coords[1]);
+				if (coords && coords[1] !== -1) turn(coords[1]);
 			}, 500);
 		}
 	}, [board, isAiPlaying, isGameOver, isRedTurn, turn]);
