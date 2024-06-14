@@ -18,7 +18,7 @@ function Layout() {
 				</nav>
 				<ThemeToggle />
 			</aside>
-			<main className="main-content paper-layout ">
+			<main className="main-content paper-layout">
 				<Outlet />
 			</main>
 		</div>
