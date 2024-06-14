@@ -1,0 +1,38 @@
+.layout {
+	display: grid;
+	grid-template-columns: max-content 1fr;
+
+	.sidebar {
+		position: sticky;
+		top: 0;
+		align-self: start;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+
+		.title {
+			font-size: 24px;
+			font-weight: bold;
+		}
+
+		.navigation-links {
+			display: flex;
+			flex-direction: column;
+		}
+	}
+
+	.main-content {
+	}
+}
+
+.paper-layout {
+	height: calc(100vh - 80px);
+	background-color: var(--paper-bg-color);
+	padding: 20px;
+	margin: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	overflow: scroll;
+	/* transition: var(--theme-transition); */
+}

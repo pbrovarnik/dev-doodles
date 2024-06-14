@@ -1,0 +1,72 @@
+.app {
+	display: flex;
+	flex-direction: column;
+	justify-items: center;
+	align-items: center;
+}
+
+.board {
+	display: grid;
+	justify-items: center;
+}
+
+.row {
+	display: flex;
+	border-bottom: 1px solid var(--text);
+
+	&:nth-last-of-type(4),
+	&:nth-last-of-type(7) {
+		border-bottom: 2px solid var(--text);
+	}
+
+	&:nth-last-of-type(1) {
+		border-bottom: unset;
+	}
+}
+
+.cell {
+	border-right: 1px solid var(--text);
+
+	&:nth-last-of-type(4),
+	&:nth-last-of-type(7) {
+		border-right: 2px solid var(--text);
+	}
+
+	&:nth-last-of-type(1) {
+		border-right: unset;
+	}
+
+	input {
+		/* transition: var(--theme-transition); */
+		background-color: inherit;
+		transition: var();
+		padding: 10px 16.25px;
+		width: 10px;
+		border: unset;
+		outline: unset;
+		font-size: 18px;
+	}
+
+	/* Chrome, Safari, Edge, Opera */
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	/* Firefox */
+	input[type='number'] {
+		-moz-appearance: textfield;
+	}
+}
+
+.sodoku-btn-container {
+	display: flex;
+	column-gap: 4px;
+	margin-top: 20px;
+}
+
+.game-msg {
+	margin-top: 20px;
+	color: red;
+}

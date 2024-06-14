@@ -1,0 +1,11 @@
+.checkout-lines {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	row-gap: 20px;
+}
+
+.checkout-lines-btns {
+	display: flex;
+	column-gap: 4px;
+}

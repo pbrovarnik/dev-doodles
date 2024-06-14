@@ -1,0 +1,22 @@
+.dots {
+	height: 100%;
+
+	.dot-btn-container {
+		display: flex;
+		column-gap: 4px;
+	}
+
+	.dots-grid {
+		height: calc(100% - 1px);
+
+		.dot {
+			position: absolute;
+			display: inline-block;
+			border-radius: 50%;
+			background-color: var(--text);
+			/* transition: var(--theme-transition); */
+			height: 10px;
+			width: 10px;
+		}
+	}
+}
