@@ -11,7 +11,9 @@ const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path="/" element={<Layout />} errorElement={<ErrorPage />}>
 			<Route errorElement={<ErrorPage />}>
-				{routes.map(({ name, path, Element }) => (name === 'index' ? <Route key={path} index element={<Element />} /> : <Route key={path} path={path} element={<Element />} />))}
+				{routes.map(({ name, path, Element }) => (
+					<Route key={path} index={name === 'Home'} path={path} element={<Element />} />
+				))}
 			</Route>
 		</Route>
 	),

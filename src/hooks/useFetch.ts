@@ -43,7 +43,7 @@ const useFetch = <T>({ defaultData, options, url }: Props<T>): ReturnState<T> =>
 		return () => {
 			controller.abort();
 		};
-	}, []);
+	}, [options, url]);
 
 	return { data, isLoading, error };
 };
