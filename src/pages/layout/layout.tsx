@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { navRoutes } from '../routes';
 import ThemeToggle from '../../components/theme-toggle/theme-toggle';
-import NavigationTree from './components/recursive-nav-link/navigation-tree';
+import NavigationTree from './components/navigation-tree/navigation-tree';
 
 import './layout.css';
 
