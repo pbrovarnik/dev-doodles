@@ -19,6 +19,15 @@
 		.navigation-links {
 			display: flex;
 			flex-direction: column;
+
+			.nav-leaf-item {
+				display: flex;
+				column-gap: 4px;
+
+				.nav-leaf-expand-icon {
+					transition: transform 0.1s linear;
+				}
+			}
 		}
 	}
 

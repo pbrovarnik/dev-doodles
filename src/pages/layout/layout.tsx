@@ -1,24 +1,23 @@
-import { NavLink, Outlet } from 'react-router-dom';
-import routes from '../routes';
+import { Outlet } from 'react-router-dom';
+import { navRoutes } from '../routes';
+import ThemeToggle from '../../components/theme-toggle/theme-toggle';
+import NavigationTree from './components/recursive-nav-link/navigation-tree';
 
 import './layout.css';
-import ThemeToggle from '../../components/theme-toggle/theme-toggle';
 
 function Layout() {
 	return (
 		<div className="layout">
 			<aside className="sidebar paper-layout ">
-				<h2 className="title">DevDoodles</h2>
+				<h2 className="title">Dev Doodles</h2>
 				<nav className="navigation-links">
-					{routes.map(({ name, path }) => (
-						<NavLink key={path} to={path}>
-							{name}
-						</NavLink>
+					{navRoutes?.map((route) => (
+						<NavigationTree key={route.path} {...route} depth={1} />
 					))}
 				</nav>
 				<ThemeToggle />
 			</aside>
-			<main className="main-content paper-layout">
+			<main className="main-content paper-layout ">
 				<Outlet />
 			</main>
 		</div>

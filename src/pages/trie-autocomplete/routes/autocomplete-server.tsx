@@ -1,13 +1,15 @@
 import { FormEventHandler, MouseEventHandler, useCallback, useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+
 import useFetch from '../hooks/useFetch';
 
-import '../App.css';
 import Header from '../components/header';
 import SearchForm from '../components/search-form';
 import WordList from '../components/word-list';
 
-const BASE_URL = new URL('http://localhost:3001/api/autocomplete');
+import '../trie-autocomplete.css';
+
+const BASE_URL = new URL(`${import.meta.env.APP_SERVER_URL}/api/v1/autocomplete`);
 const INSERT_URL = new URL(`${BASE_URL}/insert`);
 const DELETE_URL = new URL(`${BASE_URL}/delete`);
 const SUGGEST_URL = new URL(`${BASE_URL}/suggest`);

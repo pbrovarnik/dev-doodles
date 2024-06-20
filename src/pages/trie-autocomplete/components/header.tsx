@@ -9,7 +9,7 @@ type Props = {
 const Header: FC<Props> = ({ headerName, navigateTo }) => {
 	return (
 		<>
-			<Link to={`/${navigateTo}`}>go to {navigateTo}</Link>
+			<Link to={`/trie-autocomplete/${navigateTo}`}>go to {navigateTo}</Link>
 			<h1>{headerName}</h1>
 		</>
 	);

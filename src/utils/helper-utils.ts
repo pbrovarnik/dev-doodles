@@ -21,3 +21,7 @@ export function getLsItem(key: string) {
 export function setLsItem<T>(key: string, value: T) {
 	localStorage.setItem(key, JSON.stringify(value));
 }
+
+export function upperCaseFirstLetter(word: string): string {
+	return word.charAt(0).toUpperCase() + word.slice(1);
+}

@@ -11,7 +11,7 @@ type Props = {
 
 const SearchForm: FC<Props> = ({ inputRef, onSubmit, setSuggestedWords }) => {
 	return (
-		<form onSubmit={onSubmit}>
+		<form className="ac-search-form" onSubmit={onSubmit}>
 			<input ref={inputRef} onChange={debounce(() => setSuggestedWords(), TIMEOUT_DURATION)} placeholder="type something..." />
 			<button type="submit">Save</button>
 		</form>
