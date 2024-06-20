@@ -6,7 +6,7 @@ import routes from './pages/routes';
 import './index.css';
 
 const router = createBrowserRouter(routes, {
-	basename: '/dev-doodles',
+	basename: import.meta.env.BASE_URL,
 });
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
