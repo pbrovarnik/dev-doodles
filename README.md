@@ -2,7 +2,7 @@
 
 ![Under Construction](https://img.shields.io/badge/status-under%20construction-orange?style=for-the-badge)
 
-Welcome to **DevDoodles**! 🎨
+Welcome to 🚧 **DevDoodles**! 🎨
 
 🔗 Check out some cool [**doodles**](https://pbrovarnik.github.io/dev-doodles) ✨
 
