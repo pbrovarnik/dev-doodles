@@ -22,6 +22,7 @@ import { upperCaseFirstLetter } from '../utils/helper-utils';
 import FolderStructure from './folder-structure/folder-structure';
 import Timer from './timer/timer';
 import Wordle from './wordle/wordle';
+import WhackAMole from './whack-a-mole/whack-a-mole';
 
 export type NavRoute = {
 	children?: NavRoute[];
@@ -121,6 +122,10 @@ const mainRoutes = [
 				element: <AutocompleteServer />,
 			},
 		],
+	},
+	{
+		path: 'whack-a-mole',
+		element: <WhackAMole />,
 	},
 	{
 		path: 'wordle',

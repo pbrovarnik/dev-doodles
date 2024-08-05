@@ -1,0 +1,28 @@
+.wam {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 20px;
+
+	.wam-timer,
+	.wam-score {
+		font-size: 40px;
+	}
+
+	.wam-board {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+
+		.wam-row {
+			display: flex;
+			gap: 8px;
+
+			.wam-cell {
+				width: 80px;
+				height: 80px;
+				border: 1px var(--text) solid;
+			}
+		}
+	}
+}
