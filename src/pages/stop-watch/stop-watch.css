@@ -1,6 +1,6 @@
 .stop-watch {
 	height: 100%;
-	width: 168px;
+	width: 220px;
 	margin: 0 auto;
 	display: grid;
 	grid-template-rows: auto auto 200px;
@@ -9,7 +9,7 @@
 }
 
 .timer-container {
-	width: 168px;
+	width: 220px;
 	font-size: 40px;
 }
 

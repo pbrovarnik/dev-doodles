@@ -20,6 +20,8 @@ import ErrorPage from './error-page/error-page';
 import Layout from './layout/layout';
 import { upperCaseFirstLetter } from '../utils/helper-utils';
 import FolderStructure from './folder-structure/folder-structure';
+import Timer from './timer/timer';
+import Wordle from './wordle/wordle';
 
 export type NavRoute = {
 	children?: NavRoute[];
@@ -103,6 +105,10 @@ const mainRoutes = [
 		element: <TicTacToe />,
 	},
 	{
+		path: 'timer',
+		element: <Timer />,
+	},
+	{
 		path: 'trie-autocomplete',
 		element: <TrieAutocomplete />,
 		children: [
@@ -115,6 +121,10 @@ const mainRoutes = [
 				element: <AutocompleteServer />,
 			},
 		],
+	},
+	{
+		path: 'wordle',
+		element: <Wordle />,
 	},
 ];
 

@@ -1,0 +1,48 @@
+.wordle {
+	display: flex;
+	gap: 10px;
+	flex-direction: column;
+	align-items: flex-start;
+
+	.wordle-board {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+
+		.wordle-row {
+			display: flex;
+			gap: 4px;
+
+			.wordle-cell {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 4px;
+				width: 40px;
+				height: 40px;
+				border: 1px var(--text) solid;
+				text-transform: capitalize;
+				color: var(--text);
+				font-size: 20px;
+
+				&.correct,
+				&.incorrect,
+				&.includes {
+					color: #212121;
+				}
+
+				&.correct {
+					background-color: lightgreen;
+				}
+
+				&.incorrect {
+					background-color: lightgray;
+				}
+
+				&.includes {
+					background-color: lightsalmon;
+				}
+			}
+		}
+	}
+}
