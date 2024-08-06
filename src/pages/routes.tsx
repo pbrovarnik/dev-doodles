@@ -23,6 +23,7 @@ import FolderStructure from './folder-structure/folder-structure';
 import Timer from './timer/timer';
 import Wordle from './wordle/wordle';
 import WhackAMole from './whack-a-mole/whack-a-mole';
+import TypingTest from './typing-test/typing-test';
 
 export type NavRoute = {
 	children?: NavRoute[];
@@ -108,6 +109,10 @@ const mainRoutes = [
 	{
 		path: 'timer',
 		element: <Timer />,
+	},
+	{
+		path: 'typing-test',
+		element: <TypingTest />,
 	},
 	{
 		path: 'trie-autocomplete',

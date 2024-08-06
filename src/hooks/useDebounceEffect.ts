@@ -2,13 +2,13 @@ import { useState, useEffect, useRef } from 'react';
 
 const useDebounceEffect = (text: string, delay = 500): string => {
 	const [debouncedValue, setDebouncedValue] = useState<string>(text);
-	const timerRef = useRef<number>();
+	const timeoutIdRef = useRef<number>();
 
 	useEffect(() => {
-		timerRef.current = setTimeout(() => setDebouncedValue(text), delay);
+		timeoutIdRef.current = setTimeout(() => setDebouncedValue(text), delay);
 
 		return () => {
-			clearTimeout(timerRef.current);
+			clearTimeout(timeoutIdRef.current);
 		};
 	}, [text, delay]);
 

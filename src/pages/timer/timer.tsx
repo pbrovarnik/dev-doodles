@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import './timer.css';
 
 export default function Timer() {
@@ -9,43 +9,48 @@ export default function Timer() {
 	const [isTimerRunning, setIsTimerRunning] = useState(false);
 	// timer
 	const [timer, setTimer] = useState(0);
-	// hours duration
-	const [hoursDuration, setHoursDuration] = useState(0);
-	// minutes duration
-	const [minutesDuration, setMinutesDuration] = useState(0);
-	// seconds duration
-	const [secondsDuration, setSecondsDuration] = useState(0);
-
-	const totalTime = hoursDuration * 60 * 60 * 1000 + minutesDuration * 60 * 1000 + secondsDuration * 1000;
 
 	// ref hook
 	// intervalIdRef
 	const intervalIdRef = useRef<number>();
+	// seconds duration
+	const secondInputRef = useRef<HTMLInputElement>(null);
+	// minutes duration
+	const minuteInputRef = useRef<HTMLInputElement>(null);
+	// hours duration
+	const hourInputRef = useRef<HTMLInputElement>(null);
 
-	// useEffect cleanup
-	useEffect(() => {
-		if (timer === 0 && isTimerStarted) {
-			clearInterval(intervalIdRef.current);
-			setTimer(totalTime);
-			setIsTimerRunning(false);
-			setIsTimerStarted(false);
-		}
-	}, [isTimerStarted, timer, totalTime]);
+	// derived state
+	const totalTime = useCallback(
+		() => (Number(hourInputRef.current?.value) || 0) * 60 * 60 * 1000 + (Number(minuteInputRef.current?.value) || 0) * 60 * 1000 + (Number(secondInputRef.current?.value) || 0) * 1000,
+		[]
+	);
 
+	// useEffect
 	useEffect(() => {
 		return () => {
 			clearInterval(intervalIdRef.current);
 		};
 	}, []);
 
+	useEffect(() => {
+		if (timer === 0 && isTimerStarted) {
+			clearInterval(intervalIdRef.current);
+			setTimer(totalTime());
+			setIsTimerRunning(false);
+			setIsTimerStarted(false);
+		}
+	}, [isTimerStarted, timer, totalTime]);
+
 	// button handlers
 	// start handler
 	const onStart = () => {
-		if (!isTimerStarted) setTimer(totalTime);
+		if (!isTimerStarted) setTimer(totalTime());
 
 		intervalIdRef.current = setInterval(() => {
 			setTimer((prev) => Math.max(prev - 10, 0));
-		});
+		}, 10);
+
 		setIsTimerStarted(true);
 		setIsTimerRunning(true);
 	};
@@ -59,7 +64,7 @@ export default function Timer() {
 	// cancel handler
 	const onCancel = () => {
 		clearInterval(intervalIdRef.current);
-		setTimer(totalTime);
+		setTimer(totalTime());
 		setIsTimerStarted(false);
 		setIsTimerRunning(false);
 	};
@@ -85,15 +90,15 @@ export default function Timer() {
 			<div className="timer-inputs">
 				<div className="timer-input">
 					<label>Hours</label>
-					<input type="number" onChange={(e) => setHoursDuration(Number(e.target.value))} value={hoursDuration} />
+					<input ref={hourInputRef} type="number" />
 				</div>
 				<div className="timer-input">
 					<label>Minutes</label>
-					<input type="number" onChange={(e) => setMinutesDuration(Number(e.target.value))} value={minutesDuration} />
+					<input ref={minuteInputRef} type="number" />
 				</div>
 				<div className="timer-input">
 					<label>Seconds</label>
-					<input type="number" onChange={(e) => setSecondsDuration(Number(e.target.value))} value={secondsDuration} />
+					<input ref={secondInputRef} type="number" />
 				</div>
 			</div>
 			<div className="time">{formatTime(timer)}</div>
