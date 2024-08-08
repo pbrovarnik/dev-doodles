@@ -24,6 +24,7 @@ import Timer from './timer/timer';
 import Wordle from './wordle/wordle';
 import WhackAMole from './whack-a-mole/whack-a-mole';
 import TypingTest from './typing-test/typing-test';
+import ManyBars from './many-bars/many-bars';
 
 export type NavRoute = {
 	children?: NavRoute[];
@@ -85,6 +86,10 @@ const mainRoutes = [
 	{
 		path: 'get-css-selector',
 		element: <GetCssSelector />,
+	},
+	{
+		path: 'many-bars',
+		element: <ManyBars />,
 	},
 	{
 		path: 'nested-comments',
