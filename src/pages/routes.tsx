@@ -25,6 +25,7 @@ import Wordle from './wordle/wordle';
 import WhackAMole from './whack-a-mole/whack-a-mole';
 import TypingTest from './typing-test/typing-test';
 import ManyBars from './many-bars/many-bars';
+import DynamicSquares from './dynamic-squares/dynamic-squares';
 
 export type NavRoute = {
 	children?: NavRoute[];
@@ -74,6 +75,10 @@ const mainRoutes = [
 	{
 		path: 'debounce-search',
 		element: <DebounceSearch />,
+	},
+	{
+		path: 'dynamic-squares',
+		element: <DynamicSquares />,
 	},
 	{
 		path: 'dots',
