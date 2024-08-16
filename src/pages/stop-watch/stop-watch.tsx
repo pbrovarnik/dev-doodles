@@ -37,6 +37,7 @@ export default function StopWatch() {
 	const onStopTimer = () => {
 		// -clear interval to stop timer state from incrementing
 		clearInterval(intervalIdRef.current);
+		intervalIdRef.current = undefined;
 		// -set isTimerRunning state to false
 		setIsTimerRunning(false);
 	};

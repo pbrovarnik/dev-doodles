@@ -26,6 +26,7 @@ import WhackAMole from './whack-a-mole/whack-a-mole';
 import TypingTest from './typing-test/typing-test';
 import ManyBars from './many-bars/many-bars';
 import DynamicSquares from './dynamic-squares/dynamic-squares';
+import PowerSource from './power-source/power-source';
 
 export type NavRoute = {
 	children?: NavRoute[];
@@ -103,6 +104,10 @@ const mainRoutes = [
 	{
 		path: 'nested-dropdowns',
 		element: <NestedDropdowns />,
+	},
+	{
+		path: 'power-source',
+		element: <PowerSource />,
 	},
 	{
 		path: 'sodoku-board',

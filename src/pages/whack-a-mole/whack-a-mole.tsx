@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import './whack-a-mole.css';
 
-const INITIAL_TIMER = 30;
+const INITIAL_TIMER = 3;
 // board
 const BOARD = [
 	['', '', ''],
@@ -34,16 +34,6 @@ export default function WhackAMole() {
 		};
 	}, []);
 
-	useEffect(() => {
-		if (timer) return;
-
-		setIsGameRunning(false);
-		setRandomRow(-1);
-		setRandomCol(-1);
-		clearInterval(internalTimerIdRef.current);
-		clearInterval(internalRandomCellIdRef.current);
-	}, [timer]);
-
 	// handlers
 	// start game
 	const onStartGame = () => {
@@ -53,7 +43,18 @@ export default function WhackAMole() {
 		// -start interval
 		internalTimerIdRef.current = setInterval(() => {
 			// --decrease timer by 1s
-			setTimer((prev) => prev - 1);
+			setTimer((prev) => {
+				if (prev <= 0) {
+					setIsGameRunning(false);
+					setRandomRow(-1);
+					setRandomCol(-1);
+					clearInterval(internalTimerIdRef.current);
+					clearInterval(internalRandomCellIdRef.current);
+					return 0;
+				}
+
+				return prev - 1;
+			});
 		}, 1000);
 
 		internalRandomCellIdRef.current = setInterval(() => {
